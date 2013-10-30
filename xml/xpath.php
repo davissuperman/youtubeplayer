@@ -51,7 +51,9 @@ function change(id){
 <div class="list_carousel">
   <ul id="foo2">
 <?php
-$xml = simplexml_load_file('test.xml');
+//$xml = simplexml_load_file('test.xml');
+$str =  file_get_contents("http://gdata.youtube.com/feeds/api/playlists/PLcevMkLawaGoLqqC5g8Yp9_oXG2cIZOX3");
+$xml = simplexml_load_string($str);
 //var_dump($xml->getNameSpaces()) ;die;
 //$result = $xml->xpath('/feed');
 $count = count($xml->entry);
