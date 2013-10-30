@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <div id="player"></div>
+<script>
+//Load player api asynchronously.
+var tag = document.createElement('script');
+tag.src = "http://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var done = false;
+var player;
+function onYouTubePlayerAPIReady() {
+    player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+	  autoplay:1,
+      videoId: 'ZQeKiDpbd-M',
+	   playerVars: {
+		  listType:'playlist',
+		  list:'PLcevMkLawaGoLqqC5g8Yp9_oXG2cIZOX3'
+	  },
+     // events: {
+     //   'onReady': onPlayerReady,
+     //   'onStateChange': onPlayerStateChange
+     // }
+    });
+}
+function onPlayerReady(evt) {
+    evt.target.playVideo();
+}
+function onPlayerStateChange(evt) {
+    if (evt.data == YT.PlayerState.PLAYING && !done) {
+        setTimeout(stopVideo, 6000);
+        done = true;
+    }
+}
+function play() {
+  if (player) {
+    player.playVideo();
+  }
+}
+function stopVideo() {
+    player.stopVideo();
+}
+function change(id){
+	player.loadVideoById(id);
+}
+
+</script>
+
+ <a href="javascript:void(0);" onclick="play();">Play</a>
+  <a href="javascript:void(0);" onclick="stopVideo();">stop</a>
+    <a href="javascript:void(0);" onclick="change('ZQeKiDpbd-M');">change one</a>
+	 <a href="javascript:void(0);" onclick="change('JW5meKfy3fY');">change two</a>
+ </body>
+</html>
